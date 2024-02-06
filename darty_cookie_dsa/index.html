@@ -1,0 +1,104 @@
+<script src="Cookie.min.js"></script>
+<script>
+    function createCookie(is1Min) {
+        let list_page_value = document.querySelector('input[name="list_page"]:checked').value;
+        let reco_carousel_value = document.querySelector('input[name="reco_carousel"]:checked').value;
+        
+        var expirationDate = new Date();
+        if (is1Min) {
+            expirationDate.setTime(new Date().getTime()+(60*1000));
+        } else {
+            let days = 30*6;
+            expirationDate.setTime(new Date().getTime()+(days*24*60*60*1000));
+        }
+        
+        let cookieValue = `{
+  "list_page": "${list_page_value}",
+  "reco_carousel": "${reco_carousel_value}",
+  "cookie_end_date" : ${expirationDate.getTime()},
+  "offers_page": "default",
+  "product_carousel": "avis_desc" 
+}
+`
+
+        Cookie.set('dsa_sort_choice', cookieValue, {
+            expires: expirationDate
+        });
+        output()
+    }
+
+    function clearCookie() {
+        Cookie.remove('dsa_sort_choice');
+        output()
+    }
+
+    function output() {
+        document.querySelector('div[name="dsa_sort_choice_div"]').innerHTML = ""+Cookie.get('dsa_sort_choice');
+    }
+
+    window.onload = function() {
+        output()
+    };
+
+</script>
+  
+
+<fieldset>
+    <legend>reco_carousel:</legend>
+<div>
+    <input type="radio" id="default" name="reco_carousel" value="default" checked />
+    <label for="huey">pertinence</label>
+  </div>
+
+  <div>
+    <input type="radio" id="top_sale" name="reco_carousel" value="top_sale" />
+    <label for="dewey">meilleure vente</label>
+  </div>
+</fieldset>
+<br/>
+
+<fieldset>
+    <legend>list_page:</legend>
+<div>
+    <input type="radio" id="prix_asc" name="list_page" value="prix_asc" checked />
+    <label for="huey">prix croissant</label>
+  </div>
+
+  <div>
+    <input type="radio" id="prix_desc" name="list_page" value="prix_desc" />
+    <label for="dewey">prix décroissant</label>
+  </div>
+
+  <div>
+    <input type="radio" id="avis_desc" name="list_page" value="avis_desc" />
+    <label for="louie">meilleure note vendeur</label>
+  </div>
+
+  <div>
+    <input type="radio" id="delivery_asc" name="list_page" value="delivery_asc" />
+    <label for="louie">délai de livraison</label>
+  </div>
+
+  <div>
+    <input type="radio" id="default" name="list_page" value="default" />
+    <label for="louie">tri par défault</label>
+  </div>
+</fieldset>
+<br/>
+<input type="button" value="Créer/MAJ le cookie + 6 mois" onclick="createCookie(false);" >
+<br/>
+<br/>
+<br/>
+<input type="button" value="Supprimer le cookie" onclick="clearCookie();" >
+<br/>
+<br/>
+<input type="button" value="Créer/MAJ le cookie + 1 min" onclick="createCookie(true);" >
+<br/>
+
+<br/>
+<br/>
+<br/>
+<fieldset>
+    <legend>valeur de dsa_sort_choice:</legend>
+    <div name="dsa_sort_choice_div"></div>
+</fieldset>

@@ -1,0 +1,123 @@
+<script src="Cookie.min.js"></script>
+<script>
+    function createCookie(is1Min) {
+        let SortingTypeRecommendationValue = document.querySelector('input[name="SortingTypeRecommendation"]:checked').value;
+        let SortingPageListValue = document.querySelector('input[name="SortingPageList"]:checked').value;
+        
+        var expirationDate = new Date();
+        if (is1Min) {
+            expirationDate.setTime(new Date().getTime()+(60*1000));
+        } else {
+            let days = 30*6;
+            expirationDate.setTime(new Date().getTime()+(days*24*60*60*1000));
+        }
+        
+        Cookie.set('SortingTypeRecommendation', SortingTypeRecommendationValue, {
+            expires: expirationDate
+        });
+        Cookie.set('SortingPageList', SortingPageListValue, {
+            expires: expirationDate
+        });
+        Cookie.set('SortingCookieExpirationDate', expirationDate.getTime(), {
+            expires: expirationDate
+        });
+        Cookie.set('SortingPopinOtherOffers', '6', {
+            expires: expirationDate
+        });
+        output()
+    }
+
+    function clearCookie() {
+        Cookie.remove('SortingTypeRecommendation');
+        Cookie.remove('SortingPageList');
+        Cookie.remove('SortingCookieExpirationDate');
+        Cookie.remove('SortingPopinOtherOffers');
+        output()
+    }
+
+    function output() {
+        document.querySelector('div[name="SortingTypeRecommendation_DIV"]').innerHTML = ""+Cookie.get('SortingTypeRecommendation');
+        document.querySelector('div[name="SortingPageList_DIV"]').innerHTML = ""+Cookie.get('SortingPageList');
+        document.querySelector('div[name="SortingCookieExpirationDate_DIV"]').innerHTML = ""+Cookie.get('SortingCookieExpirationDate');
+        document.querySelector('div[name="SortingPopinOtherOffers_DIV"]').innerHTML = ""+Cookie.get('SortingPopinOtherOffers');
+    }
+
+    window.onload = function() {
+        output()
+    };
+
+</script>
+  
+
+<fieldset>
+    <legend>SortingTypeRecommendation:</legend>
+<div>
+    <input type="radio" id="default" name="SortingTypeRecommendation" value="1" checked />
+    <label for="huey">Pertinence (1)</label>
+  </div>
+
+  <div>
+    <input type="radio" id="top_sale" name="SortingTypeRecommendation" value="2" />
+    <label for="dewey">Meilleures ventes (2)</label>
+  </div>
+</fieldset>
+<br/>
+
+<fieldset>
+    <legend>SortingPageList:</legend>
+<div>
+    <input type="radio" id="id1" name="SortingPageList" value="0" checked />
+    <label for="huey">Pertinence (0)</label>
+  </div>
+
+  <div>
+    <input type="radio" id="id2" name="SortingPageList" value="5" />
+    <label for="dewey">Prix les moins chers (5)</label>
+  </div>
+
+  <div>
+    <input type="radio" id="id3" name="SortingPageList" value="500" />
+    <label for="louie">Prix les plus chers (500)</label>
+  </div>
+
+  <div>
+    <input type="radio" id="id4" name="SortingPageList" value="600" />
+    <label for="louie">Meilleures ventes (600)</label>
+  </div>
+
+  <div>
+    <input type="radio" id="id5" name="SortingPageList" value="700" />
+    <label for="louie">Note des internautes (700)</label>
+  </div>
+</fieldset>
+<br/>
+<input type="button" value="Créer/MAJ le cookie + 6 mois" onclick="createCookie(false);" >
+<br/>
+<br/>
+<br/>
+<input type="button" value="Supprimer le cookie" onclick="clearCookie();" >
+<br/>
+<br/>
+<input type="button" value="Créer/MAJ le cookie + 1 min" onclick="createCookie(true);" >
+<br/>
+
+<br/>
+<br/>
+<br/>
+<fieldset>
+  <legend>valeur de SortingTypeRecommendation:</legend>
+  <div name="SortingTypeRecommendation_DIV"></div>
+</fieldset>
+<fieldset>
+    <legend>valeur de SortingPageList:</legend>
+    <div name="SortingPageList_DIV"></div>
+</fieldset>
+<fieldset>
+  <legend>valeur de SortingCookieExpirationDate:</legend>
+  <div name="SortingCookieExpirationDate_DIV"></div>
+</fieldset>
+<fieldset>
+  <legend>valeur de SortingPopinOtherOffers:</legend>
+  <div name="SortingPopinOtherOffers_DIV"></div>
+</fieldset>
+

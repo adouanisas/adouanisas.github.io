@@ -4,7 +4,7 @@
         "details": [
             {
                 "appID": "D8987Q5945.com.adouanisas.univlinks",
-                "paths": [ "NOT /iOS-Universal-Links/NO/*", "/iOS-Universal-Links/*"]
+                "paths": [ "*" ]
             }
         ]
     }

@@ -21,6 +21,9 @@
         Cookie.set('SortingCookieExpirationDate', expirationDate.getTime(), {
             expires: expirationDate
         });
+        Cookie.set('SortingDateApp', expirationDate.getTime(), {
+            expires: expirationDate
+        });
         Cookie.set('SortingPopinOtherOffers', '6', {
             expires: expirationDate
         });
@@ -31,6 +34,7 @@
         Cookie.remove('SortingTypeRecommendation');
         Cookie.remove('SortingPageList');
         Cookie.remove('SortingCookieExpirationDate');
+        Cookie.remove('SortingDateApp');
         Cookie.remove('SortingPopinOtherOffers');
         output()
     }
@@ -113,7 +117,7 @@
     <div name="SortingPageList_DIV"></div>
 </fieldset>
 <fieldset>
-  <legend>valeur de SortingCookieExpirationDate:</legend>
+  <legend>valeur de SortingCookieExpirationDate et SortingDateApp:</legend>
   <div name="SortingCookieExpirationDate_DIV"></div>
 </fieldset>
 <fieldset>

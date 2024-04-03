@@ -3,8 +3,8 @@
         "apps": [],
         "details": [
             {
-                "appID": "D8987Q5945.com.adouanisas.univlinks",
-                "paths": [ "NOT /home.html", "*" ]
+                "appID": "WC7W275DZZ.com.fnac.fnacdirect.ddf.prod",
+                "paths": [ "NOT /panier.html", "/account.html" ]
             }
         ]
     }
